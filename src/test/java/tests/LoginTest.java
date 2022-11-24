@@ -77,7 +77,6 @@ public class LoginTest {
     @DisplayName("Successful login with the Login button on the Password recovery page")
     public void enterWithPasswordRecoveryTest() {
         loginPage.clickRecoveryPasswordButton();
-        forgotPasswordPage.waitForLoadForgotPasswordPage();
         forgotPasswordPage.clickEnterButton();
         loginPage.waitForLoadLoginPage();
         loginPage.enterEmail(user.getEmail());

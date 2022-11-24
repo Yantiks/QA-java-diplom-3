@@ -1,19 +1,13 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
 import dto.User;
 import dto.UserGenerator;
-import org.junit.Assert;
 import org.junit.Test;
 import pages.ConstructorSection;
 import io.qameta.allure.junit4.DisplayName;
 import pages.LoginPage;
 import pages.PrivateCabPage;
 import pages.RegisterPage;
-
-import java.util.concurrent.TimeUnit;
-
-import static com.codeborne.selenide.Configuration.pageLoadTimeout;
 
 public class RegisterTest {
     private final static String MAIN_URL = "https://stellarburgers.nomoreparties.site/register";
@@ -26,7 +20,7 @@ public class RegisterTest {
     //успешная регистрация
     @Test
     @DisplayName("Successful Registration")
-    public void successfulRegistrationTest(){
+    public void successfulRegistrationTest() {
         registerPage.openWebSite(MAIN_URL);
         registerPage.enterName(user.getName());
         registerPage.enterEmail(user.getEmail());

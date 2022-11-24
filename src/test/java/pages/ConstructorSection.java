@@ -1,65 +1,41 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byClassName;
-import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class ConstructorSection {
-    //открыть страницу https://stellarburgers.nomoreparties.site/login
-    public void openWebSite (String url){
-        Selenide.open(url);
+    private final ElementsCollection burgetParts = $$(byXpath(".//div[@style='display: flex;']//div"));
+    private final SelenideElement constructorLabel = $(byXpath(".//h1[text()='Соберите бургер']"));
+
+    public void checkMainLabel() {
+        constructorLabel.shouldBe(visible, Duration.ofSeconds(10));
     }
 
-    private final SelenideElement constructorLabel = $(byXpath("/html/body/div/div/main/section[1]/h1"));
-
-    public void checkMainLabel (){
-        constructorLabel.shouldBe(visible, Duration.ofSeconds(30));
-        constructorLabel.shouldHave(Condition.exactText("Соберите бургер"));
+    //получение названия активной вкладки
+    public String getNameOfTheSection() {
+        return $(byXpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']//span[@class='text text_type_main-default']")).getText();
     }
 
-    //секция Булки
-    private final SelenideElement bunsSection = $(byXpath("/html/body/div/div/main/section[1]/div[1]/div[1]"));
-
-    //клик
+    //клик секция Булки
     public void bunsSectionButton() {
-        bunsSection.shouldBe(visible, Duration.ofSeconds(30)).click();
+        burgetParts.get(0).shouldBe(visible, Duration.ofSeconds(10)).click();
     }
 
-    //секция Соусы
-    private final SelenideElement saucesSection = $(byXpath("/html/body/div/div/main/section[1]/div[1]/div[2]"));
-
-    //клик
+    //клик секция Соусы
     public void saucesSectionButton() {
-        saucesSection.shouldBe(visible, Duration.ofSeconds(30)).click();
+        burgetParts.get(1).shouldBe(visible, Duration.ofSeconds(10)).click();
     }
 
-    //секция Начинки
-    private final SelenideElement fillingsSection = $(byXpath("/html/body/div/div/main/section[1]/div[1]/div[3]"));
-
-    //клик
+    //клик секция Начинки
     public void fillingsSectionButton() {
-        fillingsSection.shouldBe(visible, Duration.ofSeconds(30)).click();
-    }
-
-    //получение класса Булок
-    public String getAttributeBuns() {
-        return bunsSection.getAttribute("class");
-    }
-
-    //получение класса Соусов
-    public String getAttributeSauces() {
-        return saucesSection.getAttribute("class");
-    }
-
-    //получение класса Начинок
-    public String getAttributeFillings() {
-        return fillingsSection.getAttribute("class");
+        burgetParts.get(2).shouldBe(visible, Duration.ofSeconds(10)).click();
     }
 }

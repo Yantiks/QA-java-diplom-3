@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 
 public class ConfigForTest {
-    public void setUp () {
+    public void setUp() {
 
         WebDriverManager.chromedriver().setup();
         Configuration.browser = "chrome";
@@ -18,9 +18,13 @@ public class ConfigForTest {
 
     //перед каждым запуском теста выполнить найстройки, описанные выше
     @Before
-    public void unit() {setUp();}
+    public void unit() {
+        setUp();
+    }
 
     //после каждого теста нужно закрыть веб-драйвер
     @After
-    public void tearDown() {Selenide.closeWebDriver();}
+    public void tearDown() {
+        Selenide.closeWebDriver();
+    }
 }

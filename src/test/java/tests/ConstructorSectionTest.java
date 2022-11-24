@@ -14,7 +14,6 @@ import pages.RegisterPage;
 
 public class ConstructorSectionTest {
     private final static String REGISTR_URL = "https://stellarburgers.nomoreparties.site/register";
-    private final static String CONSTRUCTOR_URL = "https://stellarburgers.nomoreparties.site/";
 
     private RegisterPage registerPage = new RegisterPage();
     private LoginPage loginPage = new LoginPage();
@@ -45,24 +44,25 @@ public class ConstructorSectionTest {
     }
 
     @Test
+    @DisplayName("Successful jump to section Buns")
+    public void isBunsActive() {
+        constructorSection.saucesSectionButton();
+        Assert.assertEquals("Соусы", constructorSection.getNameOfTheSection());
+        constructorSection.bunsSectionButton();
+        Assert.assertEquals("Булки", constructorSection.getNameOfTheSection());
+    }
+
+    @Test
     @DisplayName("Successful jump to section Sauces")
     public void isSaucesActive() {
         constructorSection.saucesSectionButton();
-        Assert.assertEquals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect", constructorSection.getAttributeSauces());
+        Assert.assertEquals("Соусы", constructorSection.getNameOfTheSection());
     }
 
     @Test
     @DisplayName("Successful jump to section Filling")
     public void isFillingsActive() {
         constructorSection.fillingsSectionButton();
-        Assert.assertEquals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect", constructorSection.getAttributeFillings());
-    }
-
-    @Test
-    @DisplayName("Successful jump to section Buns")
-    public void isBunsActive() {
-        constructorSection.saucesSectionButton();
-        constructorSection.bunsSectionButton();
-        Assert.assertEquals("tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect", constructorSection.getAttributeBuns());
+        Assert.assertEquals("Начинки", constructorSection.getNameOfTheSection());
     }
 }

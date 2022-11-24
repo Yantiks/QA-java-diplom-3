@@ -7,17 +7,20 @@ import com.codeborne.selenide.SelenideElement;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byClassName;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class PrivateCabPage {
-    public void openWebSite (String url){
-        Selenide.open(url);
-    }
-
     //найти кнопку Личный Кабинет
-    private final SelenideElement privateCabButton = $(byXpath("/html/body/div/div/header/nav/a/p"));
+    private final SelenideElement privateCabButton = $(byXpath(".//p[text()='Личный Кабинет']"));
+    //найти кнопку Конструктор
+    private final SelenideElement constructorButton = $(byXpath(".//p[text()='Конструктор']"));
+    //найти кнопку Stellar burgers
+    private final SelenideElement burgersButton = $(byXpath(".//a[@href='/']"));
+    //найти кнопку Выход
+    private final SelenideElement logoutButton = $(byXpath(".//button[@type='button']"));
 
     //нажать на кнопку Личный Кабинет
     public void clickPrivateCabButton() {
@@ -25,20 +28,16 @@ public class PrivateCabPage {
     }
 
     //проверить URL страницы
-    public String checkCurrentUrl() {return url();}
+    public String checkCurrentUrl() {
+        return url();
+    }
 
-    //найти кнопку Конструктор
-    private final SelenideElement constructorButton = $(byXpath("/html/body/div/div/header/nav/ul/li[1]/a/p"));
-
-    //кликнуть
+    //кликнуть кнопку Конструктор
     public void clickConstructorButton() {
         constructorButton.click();
     }
 
-    //найти кнопку Stellar burgers
-    private final SelenideElement burgersButton = $(byXpath("/html/body/div/div/header/nav/div/a"));
-
-    //кликнуть
+    //кликнуть кнопку Stellar burgers
     public void clickBurgersButton() {
         burgersButton.click();
     }
@@ -47,14 +46,8 @@ public class PrivateCabPage {
         burgersButton.shouldBe(visible);
     }
 
-    //найти кнопку Выход
-    private final SelenideElement logoutButton = $(byXpath("/html/body/div/div/main/div/nav/ul/li[3]/button"));
-
-    //кликнуть
+    //кликнуть кнопку Выход
     public void clickLogoutButton() {
         logoutButton.shouldBe(visible, Duration.ofSeconds(10)).click();
     }
-    //public void logoutButtonisVisible() {logoutButton.shouldBe(visible, Duration.ofSeconds(10)).click() ;}
-
-
 }
